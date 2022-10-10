@@ -2,4 +2,4 @@ from mlopsforkme.alumnos.ejemplo import gritar
 
 
 def test_gritar():
-    assert gritar("hola", "que", "talestas") == "HOLAQUETALESTAS"
+    assert gritar("NO ", "ME ", "SEAN " "CONFLICTIVOS") == "NO  ME SEAN CONFLICTIVOS"
