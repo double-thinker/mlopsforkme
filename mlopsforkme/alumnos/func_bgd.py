@@ -5,4 +5,4 @@ def suma_uno(a):
         a (int): Suma uno
     """
 
-    return (a + 1)
+    return a + 1
