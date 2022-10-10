@@ -1,0 +1,44 @@
+name: Test PR
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Poetry 
+        uses: snok/install-poetry@v1
+      - name: Install dependencies
+        run: poetry install
+      - name: Testing
+        run: poetry run pytest --junitxml=jest-junit.xml --cov=mlopsforkme --cov-report=lcov
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test
+          path: jest-junit.xml
+          reporter: java-junit
+      - uses: devmasx/coverage-check-action@v1.2.0
+        if: always()
+        with:
+          type: lcov
+          result_path: coverage.lcov
+          min_coverage: 90
+          token: ${{ github.token }}
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
