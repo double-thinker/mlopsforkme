@@ -1,5 +1,3 @@
-
-
 def your_age_in_year(year, yearOfBirth):
     """
     :params year: year you want to know your age in
@@ -10,4 +8,4 @@ def your_age_in_year(year, yearOfBirth):
     :rtype: int
     """
 
-    return year - yearOfBirth;
+    return year - yearOfBirth

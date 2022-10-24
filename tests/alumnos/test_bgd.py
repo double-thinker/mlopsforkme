@@ -1,11 +1,11 @@
 # Ejemplo de Beatriz
 
-from mlopsforkme.alumnos.func_bgd import suma_uno
+from mlopsforkme.alumnos.bgd import suma_uno
 
 
-def test_suma_uno(a):
+def test_suma_uno():
     """
     Esto es un test
     """
 
-    assert suma_uno(5) == 8
+    assert suma_uno(5) == 6
